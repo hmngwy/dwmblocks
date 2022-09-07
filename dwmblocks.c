@@ -119,6 +119,8 @@ int getstatus(char *str, char *last)
 {
 	strcpy(last, str);
 	str[0] = '\0';
+	char tmp[2] = ";";
+	strcat(str, tmp);
 	for (unsigned int i = 0; i < LENGTH(blocks); i++)
 		strcat(str, statusbar[i]);
 	str[strlen(str)-strlen(delim)] = '\0';
@@ -151,7 +153,7 @@ void pstdout()
 {
 	if (!getstatus(statusstr[0], statusstr[1]))//Only write out if text has changed.
 		return;
-	printf("%s\n",statusstr[0]);
+	printf(";%s\n",statusstr[0]);
 	fflush(stdout);
 }
 
